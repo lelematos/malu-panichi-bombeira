@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>#MaluBombeira — Maria Luiza Panichi</title>
+  <meta name="description" content="Lista de presentes de enxoval brutalista para o enxoval da Malu e atuação de Maria Luiza Panichi como bombeira militar temporária de Itajaí.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- STICKY HEADER -->
+  <header class="sticky-header">
+    <a href="index.html" class="logo" id="header-logo">#MALUBOMBEIRA</a>
+    
+    <nav class="nav-links">
+      <a href="#lista-presentes" id="header-link-lista">LISTA DE PRESENTES</a>
+      <a href="#sobre" id="header-link-sobre">SOBRE A JORNADA</a>
+    </nav>
+  </header>
+
+
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-watermark">MALU</div>
+    
+    <div class="hero-content">
+      <span class="hero-subtitle" id="hero-subtitle">APOIE O ENXOVAL DA MALU</span>
+      <h1 class="hero-headline" id="hero-headline">#MALU BOMBEIRA</h1>
+      <p class="hero-description" id="hero-description">
+        Malu (Maria Luiza Panichi) conheceu os bombeiros durante a faculdade por intermédio de um colega de turma. Até então, nunca havia imaginado atuar na área, mas ao fazer o curso de formação de bombeiros comunitários, ela se identificou muito com o trabalho de emergências e salvamentos, tornando este um de seus objetivos de vida. 
+        <br><br>
+        Após se formar, a rotina pesada como enfermeira — hoje ela é líder do pronto atendimento do Hospital Baía Sul — tornou impossível conciliar as escalas. Mas ela nunca desistiu! Aprovada com muito esforço nas etapas do concurso, ela agora ingressará no Corpo de Bombeiros Militares Temporários de Itajaí. Ajude-a a arrecadar fundos para adquirir o enxoval e os materiais necessários para essa nova jornada!
+      </p>
+      <a href="#lista-presentes" class="hero-cta" id="hero-cta">VER LISTA DE ITENS ➜</a>
+    </div>
+    
+    <div class="hero-image-area">
+      <!-- Brutalist Offset Card for Hero Image -->
+      <div class="offset-card-container">
+        <div class="offset-card-shadow"></div>
+        <div class="offset-card-content" style="background-color: var(--vintage-blue); aspect-ratio: 1.2 / 1; overflow: hidden; position: relative;">
+          <div class="hero-slider-container">
+            <div class="hero-slider-track">
+              <img src="images/paola_1.jpeg" alt="Paola - Bombeira 1" class="hero-slider-img">
+              <img src="images/paola_2.jpeg" alt="Paola - Bombeira 2" class="hero-slider-img">
+              <img src="images/paola_3.jpg" alt="Paola - Bombeira 3" class="hero-slider-img">
+              <img src="images/paola_4.jpg" alt="Paola - Bombeira 4" class="hero-slider-img">
+              <img src="images/paola_5.jpg" alt="Paola - Bombeira 5" class="hero-slider-img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND TICKER (MARQUEE) -->
+  <div class="brand-ticker">
+    <div class="brand-ticker-content" id="brand-ticker-content">
+      <span>#MALUBOMBEIRA • ITAJAÍ • ENXOVAL DA MALU • SALVAMENTO • COMBATE A INCÊNDIO • PREVENÇÃO • MARIA LUIZA PANICHI • &nbsp;</span>
+      <span>#MALUBOMBEIRA • ITAJAÍ • ENXOVAL DA MALU • SALVAMENTO • COMBATE A INCÊNDIO • PREVENÇÃO • MARIA LUIZA PANICHI • &nbsp;</span>
+    </div>
+  </div>
+
+  <!-- PRODUCTS SECTION -->
+  <section class="products-section" id="lista-presentes">
+    <div class="section-header">
+      <span class="utility-label section-subtitle" id="products-subtitle">ESCOLHA SEU PRESENTE</span>
+      <h2 class="section-title" id="products-title">ITENS DO ENXOVAL</h2>
+    </div>
+
+    <!-- Filters and Search -->
+    <div class="search-filter-container">
+      <div class="search-input-wrapper">
+        <input type="text" class="search-input" id="search-input" placeholder="BUSCAR ITEM DA LISTA...">
+      </div>
+      
+      <div class="category-filters" id="category-filters">
+        <button class="filter-btn active" data-category="TODOS">TODOS</button>
+        <button class="filter-btn" data-category="GERAL">GERAL</button>
+        <button class="filter-btn" data-category="SALVAMENTO">SALVAMENTO</button>
+        <button class="filter-btn" data-category="VESTUÁRIO">VESTUÁRIO</button>
+      </div>
+    </div>
+
+    <!-- Product Grid (Populated via app.js) -->
+    <div class="product-grid" id="product-grid"></div>
+  </section>
+
+  <!-- EDITORIAL SECTION -->
+  <section class="editorial-section" id="sobre">
+    <!-- Left Pane: 1/3 Width -->
+    <div class="editorial-left">
+      <div>
+        <span class="utility-label" id="editorial-left-subtitle" style="color: var(--retro-red); margin-bottom: 12px; display: block;">SOBRE A MISSÃO</span>
+        <h2 id="editorial-left-title">DE LÍDER DO P.A. AO CORPO DE BOMBEIROS</h2>
+      </div>
+      <a href="#lista-presentes" class="circular-arrow-btn" aria-label="Ir para Lista">➜</a>
+    </div>
+
+    <!-- Right Pane: 2/3 Width -->
+    <div class="editorial-right">
+      <img src="images/editorial_watermark.jpg" alt="Concrete Watermark" class="editorial-watermark-img" onerror="this.style.display='none';">
+      <h3 id="editorial-right-title">APOIE A JORNADA DE ENXOVAL DA MALU EM ITAJAÍ.</h3>
+      <a href="#lista-presentes" class="hero-cta" id="editorial-right-cta">VER TODOS OS ITENS ➜</a>
+    </div>
+  </section>
+
+  <!-- PRODUCT DETAIL MODAL OVERLAY -->
+  <div class="product-modal-overlay" id="product-modal-overlay">
+    <div class="product-modal">
+      <button class="btn-close-modal" id="btn-close-modal">✕</button>
+      <div class="product-modal-content" id="product-modal-content">
+        <!-- Populate dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- CART MODAL OVERLAY -->
+  <div class="cart-modal-overlay" id="cart-modal-overlay">
+    <div class="cart-modal">
+      <div class="cart-drawer-header">
+        <h2>PRESENTES</h2>
+        <button class="btn-close-cart" id="btn-close-cart">✕</button>
+      </div>
+      
+      <div class="cart-items-list" id="cart-items-list">
+        <!-- Rendered via JS -->
+      </div>
+      
+      <div class="cart-summary">
+        <div class="cart-total-row">
+          <span>TOTAL:</span>
+          <span id="cart-total-value">R$ 0,00</span>
+        </div>
+        <button class="btn-checkout" onclick="checkoutCart()">RESERVAR PRESENTES</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- FOOTER -->
+  <footer style="background-color: var(--charcoal); color: var(--white); padding: 24px 16px; border-top: 4px solid var(--charcoal); text-align: center;">
+    <div id="footer-brand" style="font-family: var(--font-headlines); font-size: 24px; font-weight: 900; letter-spacing: -0.05em; margin-bottom: 8px;">#MALUBOMBEIRA</div>
+    <p id="footer-description" style="font-size: 11px; color: #c9c9c9; max-width: 600px; margin: 0 auto 12px auto; line-height: 1.4;">
+      Um projeto para apoiar o enxoval e materiais de atuação profissional de Maria Luiza Panichi no Corpo de Bombeiros Militares de Itajaí.
+    </p>
+    <div id="footer-legal" class="legal-text" style="font-size: 8px; font-weight: 600; letter-spacing: 0.1em; color: #8c8c8c; text-transform: uppercase;">
+      © 2026 #MALUBOMBEIRA. TODOS OS DIREITOS RESERVADOS.
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
