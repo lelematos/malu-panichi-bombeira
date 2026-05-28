@@ -1,140 +1,60 @@
-let PRODUCTS = [];
+const PRODUCTS = [
+  { id: 1, name: "Balaclava de Proteção", price: 35.00, category: "Vestuário", brand: "SEGURANÇA", image: "images/imagens-items/balaclava.jpeg" },
+  { id: 2, name: "Bermuda Oficial de Bombeiro", price: 49.90, category: "Vestuário", brand: "COMBATE", image: "images/imagens-items/bermuda-bombeiros.jpeg" },
+  { id: 3, name: "Blusa de Frio de Bombeiro", price: 89.90, category: "Vestuário", brand: "FRIO", image: "images/imagens-items/blusa-bombeiro.jpeg" },
+  { id: 4, name: "Bota de Segurança Borzeguim", price: 180.00, category: "Vestuário", brand: "COMBATE", image: "images/imagens-items/borzeguim-bota.jpeg" },
+  { id: 5, name: "Calça Jeans Azul Escura", price: 120.00, category: "Vestuário", brand: "VESTUÁRIO", image: "images/imagens-items/calca-jeans.jpeg" },
+  { id: 6, name: "Camiseta Dry-Fit Bombeiro", price: 39.90, category: "Vestuário", brand: "VESTUÁRIO", image: "images/imagens-items/camiseta-bombeiro.jpeg" },
+  { id: 7, name: "Caneca de Alumínio Vermelha", price: 25.00, category: "Geral", brand: "MALUBOMBEIRA", image: "images/imagens-items/caneca-aluminio.jpeg" },
+  { id: 8, name: "Caneca de Cerâmica Retro", price: 20.00, category: "Geral", brand: "UTILIDADES", image: "images/imagens-items/caneca.jpeg" },
+  { id: 9, name: "Cantil com Capa e Caneca", price: 45.00, category: "Geral", brand: "SOBREVIVÊNCIA", image: "images/imagens-items/cantil.jpeg" },
+  { id: 10, name: "Capacete de Bombeiro Civil", price: 90.00, category: "Salvamento", brand: "SEGURANÇA", image: "images/imagens-items/capacete.jpeg" },
+  { id: 11, name: "Chinelo Slide Vermelho", price: 20.00, category: "Vestuário", brand: "LAZER", image: "images/imagens-items/chinelo.jpeg" },
+  { id: 12, name: "Cinto Vermelho com Fivela", price: 25.00, category: "Vestuário", brand: "EQUIPAMENTO", image: "images/imagens-items/cinto vermelho.jpeg" },
+  { id: 13, name: "Boné de Cobertura Oficial", price: 30.00, category: "Vestuário", brand: "ACESSÓRIO", image: "images/imagens-items/cobertura-bone-bombeiro.jpeg" },
+  { id: 14, name: "Corda de Salvamento 50m", price: 30.00, category: "Salvamento", brand: "EQUIPAMENTO", image: "images/imagens-items/corda.jpeg" },
+  { id: 15, name: "Kit Talheres Camping", price: 25.00, category: "Geral", brand: "UTILIDADES", image: "images/imagens-items/garfo e faca.jpeg" },
+  { id: 16, name: "Graxa para Coturno", price: 15.00, category: "Geral", brand: "MANUTENÇÃO", image: "images/imagens-items/graxa.jpeg" },
+  { id: 17, name: "Jaqueta Corta-Vento Vermelha", price: 210.00, category: "Vestuário", brand: "FRIO", image: "images/imagens-items/jaqueta-bombeiro.jpeg" },
+  { id: 18, name: "Lanterna Tática de Alta Potência", price: 40.00, category: "Salvamento", brand: "ILUMINAÇÃO", image: "images/imagens-items/lanterna.jpeg" },
+  { id: 19, name: "Luvas Clínicas Descartáveis", price: 35.00, category: "Geral", brand: "SAÚDE", image: "images/imagens-items/luvas-clinicas.jpeg" },
+  { id: 20, name: "Luvas de Raspa de Couro", price: 25.00, category: "Salvamento", brand: "PROTEÇÃO", image: "images/imagens-items/luvas.png" },
+  { id: 21, name: "Manta de Microfibra Vermelha", price: 59.90, category: "Vestuário", brand: "CONFORTO", image: "images/imagens-items/manta-cobertor-vemelha.jpeg" },
+  { id: 22, name: "Máscara Pocket RCP", price: 45.00, category: "Salvamento", brand: "SOCORRO", image: "images/imagens-items/mascara-rcp.jpeg" },
+  { id: 23, name: "Meia Cano Médio Preta", price: 8.00, category: "Vestuário", brand: "COMBATE", image: "images/imagens-items/meia preta.jpeg" },
+  { id: 24, name: "Meia Cano Alto Branca", price: 8.00, category: "Vestuário", brand: "COMBATE", image: "images/imagens-items/meia-branca.jpeg" },
+  { id: 25, name: "Mochila Cargueira Militar", price: 150.00, category: "Salvamento", brand: "AVENTURA", image: "images/imagens-items/mochila.jpeg" },
+  { id: 26, name: "Mosquetão de Segurança", price: 15.00, category: "Salvamento", brand: "EQUIPAMENTO", image: "images/imagens-items/mosquetao.jpeg" },
+  { id: 27, name: "Óculos de Proteção Individual", price: 12.00, category: "Salvamento", brand: "PROTEÇÃO", image: "images/imagens-items/ocoulos.jpeg" },
+  { id: 28, name: "Prato de Metal Camping", price: 15.00, category: "Geral", brand: "UTILIDADES", image: "images/imagens-items/prato.jpeg" },
+  { id: 29, name: "Camiseta Regata Vermelha", price: 29.90, category: "Vestuário", brand: "ESPORTE", image: "images/imagens-items/regata.jpeg" },
+  { id: 30, name: "Shorts Legging Vermelho", price: 35.90, category: "Vestuário", brand: "ESPORTE", image: "images/imagens-items/shorts-lagging-vermelho.jpeg" },
+  { id: 31, name: "Tapete de Atividades", price: 35.00, category: "Geral", brand: "CONFORTO", image: "images/imagens-items/tapete.jpeg" },
+  { id: 32, name: "Tênis de Corrida", price: 180.00, category: "Vestuário", brand: "ESPORTE", image: "images/imagens-items/tenis-pra-correr-bastante.jpeg" },
+  { id: 33, name: "Toalha de Banho Vermelha", price: 34.90, category: "Vestuário", brand: "ENXOVAL", image: "images/imagens-items/toalha.jpeg" },
+  { id: 34, name: "Top Esportivo Vermelho", price: 29.90, category: "Vestuário", brand: "ESPORTE", image: "images/imagens-items/top-vermelho.jpeg" },
+  { id: 35, name: "Travesseiro de Viagem Inflável", price: 15.90, category: "Geral", brand: "CONFORTO", image: "images/imagens-items/travesseiros.jpeg" }
+];
 
-// Parse Markdown Config
-function parseMarkdownConfig(mdText) {
-  const sections = {};
-  const lines = mdText.split('\n');
-  let currentSection = null;
+const siteConfig = {
+  'Chave Pix': '+5548984796212',
+  'Nome Pix': 'Maria Luiza Panichi',
+  'Cidade Pix': 'SAO PAULO'
+};
+
+function initializePix() {
+  const pixKey = siteConfig['Chave Pix'];
+  const pixName = siteConfig['Nome Pix'];
+  const pixCity = siteConfig['Cidade Pix'];
   
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (line.startsWith('##')) {
-      currentSection = line.replace(/^##\s*/, '').trim().toUpperCase();
-      sections[currentSection] = [];
-    } else if (currentSection && line.startsWith('-')) {
-      sections[currentSection].push(line);
-    }
-  }
-  
-  const config = {
-    texts: {},
-    products: []
-  };
-  
-  // Parse TEXTOS GERAIS
-  const textsSection = sections['TEXTOS GERAIS'] || [];
-  textsSection.forEach(line => {
-    const match = line.match(/^-\s*\*\*([^*]+)\*\*:\s*(.*)$/);
-    if (match) {
-      config.texts[match[1].trim()] = match[2].trim();
-    }
+  PRODUCTS.forEach(product => {
+    product.pixPayload = generatePixPayload(pixKey, pixName, pixCity, product.price);
+    product.qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(product.pixPayload)}`;
+    
+    // Eagerly pre-cache QR Code image in the browser
+    const img = new Image();
+    img.src = product.qrCodeUrl;
   });
-  
-  // Parse VALORES E ITENS DO ENXOVAL
-  const productsSection = sections['VALORES E ITENS DO ENXOVAL'] || [];
-  let idCounter = 1;
-  productsSection.forEach(line => {
-    const match = line.match(/^-\s*\*\*([^*]+)\*\*:\s*(.*)$/);
-    if (match) {
-      const filename = match[1].trim();
-      const parts = match[2].split('|').map(p => p.trim());
-      if (parts.length >= 2) {
-        const title = parts[0];
-        const rawPrice = parts[1];
-        const price = parseFloat(rawPrice.replace(/[^\d.,]/g, '').replace(',', '.'));
-        const category = parts[2] || 'Geral';
-        const brand = parts[3] || 'ENXOVAL';
-        
-        config.products.push({
-          id: idCounter++,
-          name: title,
-          price: isNaN(price) ? 0.00 : price,
-          category: category,
-          brand: brand,
-          image: `images/imagens-items/${filename}`
-        });
-      }
-    }
-  });
-  
-  return config;
-}
-
-// Global Config Object
-let siteConfig = {};
-
-async function loadConfig() {
-  try {
-    const response = await fetch('config.md');
-    if (!response.ok) throw new Error('Não foi possível carregar o config.md');
-    const mdText = await response.text();
-    const parsed = parseMarkdownConfig(mdText);
-    
-    siteConfig = parsed.texts;
-    PRODUCTS = parsed.products;
-    
-    // Pre-calculate Pix payloads and preload QR code images
-    const pixKey = siteConfig['Chave Pix'] || '+5548984796212';
-    const pixName = siteConfig['Nome Pix'] || 'Maria Luiza Panichi';
-    const pixCity = siteConfig['Cidade Pix'] || 'SAO PAULO';
-    
-    PRODUCTS.forEach(product => {
-      product.pixPayload = generatePixPayload(pixKey, pixName, pixCity, product.price);
-      product.qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(product.pixPayload)}`;
-      
-      // Eagerly pre-cache QR Code image in the browser
-      const img = new Image();
-      img.src = product.qrCodeUrl;
-    });
-    
-    // Apply texts to DOM elements
-    const elementMapping = {
-      'Logo Header': 'header-logo',
-      'Link Lista Header': 'header-link-lista',
-      'Link Sobre Header': 'header-link-sobre',
-      'Subtitle Hero': 'hero-subtitle',
-      'Title Hero': 'hero-headline',
-      'Description Hero': 'hero-description',
-      'CTA Hero': 'hero-cta',
-      'Subtitle Presentes': 'products-subtitle',
-      'Title Presentes': 'products-title',
-      'Left Subtitle Editorial': 'editorial-left-subtitle',
-      'Left Title Editorial': 'editorial-left-title',
-      'Right Title Editorial': 'editorial-right-title',
-      'Right CTA Editorial': 'editorial-right-cta',
-      'Footer Brand': 'footer-brand',
-      'Footer Description': 'footer-description',
-      'Footer Legal': 'footer-legal'
-    };
-    
-    for (const [mdKey, elementId] of Object.entries(elementMapping)) {
-      const element = document.getElementById(elementId);
-      if (element && parsed.texts[mdKey]) {
-        if (mdKey.includes('Description') || mdKey.includes('Title') || mdKey.includes('CTA')) {
-          element.innerHTML = parsed.texts[mdKey];
-        } else {
-          element.textContent = parsed.texts[mdKey];
-        }
-      }
-    }
-    
-    // Apply Brand Ticker text
-    const marqueeContainer = document.getElementById('brand-ticker-content');
-    if (marqueeContainer && parsed.texts['Marquee Text']) {
-      const text = parsed.texts['Marquee Text'] + ' &nbsp;';
-      marqueeContainer.innerHTML = `
-        <span>${text}</span>
-        <span>${text}</span>
-      `;
-    }
-    
-    // Setup and render products
-    setupHomepage();
-    initHeroSlider();
-    
-  } catch (error) {
-    console.error('Erro ao inicializar configurações:', error);
-  }
 }
 
 // FORMAT CURRENCY BR
@@ -524,8 +444,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  // Load configuration and render site
-  loadConfig();
+  // Initialize Pix payloads & preload QR codes
+  initializePix();
+  
+  // Setup and render site
+  setupHomepage();
+  initHeroSlider();
 });
 
 // SETUP HOMEPAGE INTERACTIVE CONTROLS
