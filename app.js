@@ -39,7 +39,8 @@ const PRODUCTS = [
 const siteConfig = {
   'Chave Pix': '+5548984796212',
   'Nome Pix': 'Maria Luiza Panichi',
-  'Cidade Pix': 'SAO PAULO'
+  'Cidade Pix': 'SAO PAULO',
+  'Web3Forms Key': '91071e44-af03-4cf5-85fe-ca7a0205f8eb'
 };
 
 function initializePix() {
@@ -218,10 +219,17 @@ function openPixModal(product) {
         Você escolheu presentear com o item: <strong>${product.name}</strong>.<br>
         Pague o valor de <strong>${formatPrice(product.price)}</strong> escaneando o QR Code ou copiando o código Pix abaixo:
       </p>
+
+      <div style="width: 100%; display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+        <label style="font-size: 10px; font-weight: 800; color: var(--charcoal); text-transform: uppercase;">Deixe um recado (Opcional):</label>
+        <input type="text" id="pix-sender-name" placeholder="Seu Nome" style="width: 100%; border: 3px solid var(--charcoal); padding: 8px; font-family: var(--font-body); font-size: 12px; outline: none;">
+        <textarea id="pix-message-input" rows="2" style="width: 100%; border: 3px solid var(--charcoal); padding: 8px; font-family: var(--font-body); font-size: 12px; resize: none; outline: none;" placeholder="Escreva uma mensagem..."></textarea>
+        <button id="btn-send-email" onclick="sendEmailMessage('${product.name}')" style="background-color: var(--vintage-blue); color: var(--white); font-weight: 800; font-size: 11px; padding: 10px; border: 3px solid var(--charcoal); text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; box-shadow: 2px 2px 0 var(--charcoal); margin-top: 4px;">ENVIAR RECADINHO PARA MALU 💌</button>
+      </div>
       
       <!-- QR Code Container -->
       <div style="background-color: var(--white); border: 3px solid var(--charcoal); padding: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 4px 4px 0 var(--charcoal);">
-        <img src="${qrCodeUrl}" alt="QR Code Pix Malu" style="width: 180px; height: 180px; display: block; object-fit: contain;">
+        <img id="pix-qr-code" src="${qrCodeUrl}" alt="QR Code Pix Malu" style="width: 180px; height: 180px; display: block; object-fit: contain;">
       </div>
       
       <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
@@ -235,7 +243,7 @@ function openPixModal(product) {
       <div style="border-top: 3px dashed var(--charcoal); padding-top: 16px; margin-top: 8px; text-align: left; width: 100%;">
         <h4 style="font-size: 12px; font-family: var(--font-headlines); font-weight: 900; text-transform: uppercase; margin-bottom: 6px;">Próximo Passo:</h4>
         <p style="font-size: 11px; line-height: 1.4; color: #4a4a4a;">
-          Escaneie o QR Code acima com o app do seu banco ou use a opção "Pix Copia e Cola". Em seguida, envie o comprovante ou combine a entrega diretamente com a Malu!
+          Escaneie o QR Code acima com o app do seu banco ou use a opção "Pix Copia e Cola".
         </p>
       </div>
       
@@ -244,6 +252,71 @@ function openPixModal(product) {
   `;
   
   overlay.classList.add('open');
+}
+
+async function sendEmailMessage(itemName) {
+  const nameInput = document.getElementById('pix-sender-name');
+  const msgInput = document.getElementById('pix-message-input');
+  const btn = document.getElementById('btn-send-email');
+  
+  if (!nameInput || !msgInput || !btn) return;
+  
+  const userName = nameInput.value.trim();
+  const userMsg = msgInput.value.trim();
+  
+  if (!userName || !userMsg) {
+    alert("Por favor, preencha seu nome e a mensagem antes de enviar!");
+    return;
+  }
+  
+  const accessKey = siteConfig['Web3Forms Key'];
+  if (!accessKey) {
+    alert("A chave do Web3Forms ainda não foi configurada no app.js!");
+    return;
+  }
+
+  btn.innerText = "ENVIANDO...";
+  btn.disabled = true;
+  btn.style.opacity = "0.7";
+  
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: accessKey,
+        subject: `Novo presente do enxoval: ${itemName}! 🚒`,
+        from_name: "Enxoval Malu Bombeira",
+        Presente: itemName,
+        Nome: userName,
+        Mensagem: userMsg
+      }),
+    });
+    
+    if (response.status === 200) {
+      btn.innerText = "MENSAGEM ENVIADA! 🎉";
+      btn.style.backgroundColor = "#25D366"; // verde sucesso
+      nameInput.value = '';
+      msgInput.value = '';
+    } else {
+      btn.innerText = "ERRO AO ENVIAR";
+      btn.style.backgroundColor = "var(--retro-red)";
+    }
+  } catch (error) {
+    console.error(error);
+    btn.innerText = "ERRO AO ENVIAR";
+    btn.style.backgroundColor = "var(--retro-red)";
+  }
+  
+  setTimeout(() => {
+    btn.innerText = "ENVIAR RECADINHO PARA MALU 💌";
+    btn.disabled = false;
+    btn.style.opacity = "1";
+    btn.style.backgroundColor = "var(--vintage-blue)";
+  }, 3500);
 }
 
 function presentItem(productId) {
